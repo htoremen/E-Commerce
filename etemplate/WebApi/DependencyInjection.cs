@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure;
+namespace WebApi;
 
 public static class DependencyInjection
 {

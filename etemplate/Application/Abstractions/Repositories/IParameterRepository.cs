@@ -1,7 +1,5 @@
-﻿using Domain.Entities;
+﻿namespace Application.Abstractions.Repositories;
 
-namespace Application.Abstractions.Repositories;
-
-public interface IParameterRepository : IRepository<Parameter>
+public interface IParameterRepository : IRepository<Domain.Entities.Parameter>
 {
 }

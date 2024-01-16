@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Persistence.Persistence;
 using Persistence.Repositories;
 
-namespace Infrastructure;
+namespace Persistence;
 
 public static class DependencyInjection
 {

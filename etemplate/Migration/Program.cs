@@ -1,4 +1,6 @@
-﻿using Infrastructure;
+﻿using Application;
+using Infrastructure;
+using Persistence;
 using Migration;
 
 IConfiguration Configuration;
@@ -12,7 +14,11 @@ Configuration = builder.Configuration
         .AddUserSecrets<Program>()
         .Build();
 
-builder.Services.AddInPersistence(builder.Configuration);
+builder.Services
+   .AddInApplication()
+   .AddInfrastructure()
+   .AddInPersistence(builder.Configuration);
+
 
 builder.Services.AddScoped<IMigrationService, MigrationService>();
 
