@@ -13,7 +13,7 @@ namespace Migration.App.Seed
             if (!context.ParameterTypes.Any())
             {
                 var parameterTypeId = "4d4b3802-2128-44c8-ad98-47fe3000c100";
-                var parameterType = context.ParameterTypes.Add(new ParameterType { Id = parameterTypeId, Name = "Email İzni" }).Entity;
+                var parameterType = context.ParameterTypes.Add(new ParameterType { Id = parameterTypeId, Name = "Email İzni"}).Entity;
 
 
                 parameterType.Parameters.Add(new Parameter { Id = "4d4b3802-2128-44c8-ad98-47fe3000c101", ParameterTypeId = parameterTypeId, Name = "Randevu Oluşturma Bildirimi", IsActive = true });
