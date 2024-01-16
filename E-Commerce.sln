@@ -29,6 +29,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ordering", "ordering", "{2C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "search", "search", "{F037CFDA-8496-4840-B1C9-9BE3807EC77B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core", "core", "{2FCACED1-A080-4AC0-9091-76ACCB216B08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.MessageBrokers", "src\core\Core.MessageBrokers\Core.MessageBrokers.csproj", "{8AB27948-6299-4BE3-853D-FCBF799BC524}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +63,10 @@ Global
 		{C4439D6F-09ED-405A-A408-54320E041B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4439D6F-09ED-405A-A408-54320E041B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4439D6F-09ED-405A-A408-54320E041B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AB27948-6299-4BE3-853D-FCBF799BC524}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AB27948-6299-4BE3-853D-FCBF799BC524}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AB27948-6299-4BE3-853D-FCBF799BC524}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AB27948-6299-4BE3-853D-FCBF799BC524}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +83,7 @@ Global
 		{D3738A18-FB9C-4C02-922F-F2EE4B238864} = {8D421ACB-0BC5-423E-B123-17C9214FED3E}
 		{2C34B701-1306-4E12-878F-B861BAC5A65D} = {8D421ACB-0BC5-423E-B123-17C9214FED3E}
 		{F037CFDA-8496-4840-B1C9-9BE3807EC77B} = {8D421ACB-0BC5-423E-B123-17C9214FED3E}
+		{8AB27948-6299-4BE3-853D-FCBF799BC524} = {2FCACED1-A080-4AC0-9091-76ACCB216B08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {53CE8155-D653-41F9-BC2B-25E8009A4DC1}
