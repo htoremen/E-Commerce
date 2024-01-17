@@ -1,4 +1,5 @@
 using Application;
+using Application.Common.Models;
 using HealthChecks.UI.Client;
 using Infrastructure;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -12,12 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
+var appSettings = new AppSettings();
+builder.Configuration.Bind(appSettings);
+
 builder.Services
    .AddInApplication()
    .AddInfrastructure()
    .AddInPersistence(builder.Configuration)
-   .AddInWebApi();
+   .AddInWebApi(appSettings);
 
 builder.Services.AddCors(options =>
 {
