@@ -1,10 +1,4 @@
-﻿using Application.Abstractions;
-using Domain;
-using Domain.Entities;
-using FluentValidation;
-using MediatR;
-
-namespace Application.Parameters.Command.AddParameters;
+﻿namespace Application.Parameters.Command.AddParameters;
 
 public class AddParameterCommand : IRequest<GenericResponse<AddParameterResponse>>
 {
