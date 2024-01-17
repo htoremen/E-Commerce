@@ -1,4 +1,5 @@
-﻿using Application.Parameters.Command.AddParameters;
+﻿using Application.Parameters;
+using Application.Parameters.Command.AddParameters;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,13 @@ namespace WebApi.Controllers;
 [ApiController]
 public class ParameterController : ApiControllerBase
 {
+    [HttpGet]
+    [Route("get-parameters")]
+    public async Task<GenericResponse<List<GetParameterResponse>>> GetParameters()
+    {
+        return await Mediator.Send(new GetParameterQuery());
+    }
+
     [HttpPost]
     [Route("add-parameter")]
     public async Task<GenericResponse<AddParameterResponse>> AddParameter(AddParameterRequest request)
