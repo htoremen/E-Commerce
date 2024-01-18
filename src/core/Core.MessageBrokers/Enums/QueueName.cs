@@ -2,6 +2,8 @@
 
 public enum QueueName
 {
-    None = 0,
-    Start = 1
+    Saga = 0,
+    Start = 1,
+    AddParameter = 2,
+    Completed = 3,
 }

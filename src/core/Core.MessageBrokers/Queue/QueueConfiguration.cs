@@ -1,7 +1,10 @@
-﻿namespace Core.MessageBrokers
+﻿namespace Core.MessageBrokers;
+public interface IQueueConfiguration
 {
-    public class QueueConfiguration : IQueueConfiguration
-    {
-        public Dictionary<QueueName, string> Names { get; set; }
-    }
+    public Dictionary<QueueName, string> Names { get; set; }
+}
+
+public class QueueConfiguration : IQueueConfiguration
+{
+    public Dictionary<QueueName, string> Names { get; set; }
 }
