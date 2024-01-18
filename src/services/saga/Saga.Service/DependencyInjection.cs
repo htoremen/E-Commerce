@@ -59,8 +59,6 @@ public static class DependencyInjection
                 {
                     b.UseSqlServer(appSettings.ConnectionStrings.ConnectionString, m =>
                     {
-                        m.MigrationsAssembly(Assembly.GetExecutingAssembly().GetName().Name);
-                        m.MigrationsHistoryTable($"__{nameof(StateDbContext)}");
                     });
 
                 });
