@@ -23,4 +23,15 @@ app.UseHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var serviceProvider = scope.ServiceProvider;
+//    var _context = serviceProvider.GetService<StateDbContext>();
+
+//    _context.Database.EnsureDeleted();
+//    _context.Database.EnsureCreated();
+//}
+
 app.Run();

@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="8.1.4-develop.1651" />
     <PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.1.4-develop.1651" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -26,7 +26,7 @@ public class StateMachine : MassTransitStateMachine<StateInstance>
     #endregion
 
     [Obsolete]
-    protected StateMachine()
+    public StateMachine()
     {
         QueueConfigurationExtensions.AddQueueConfiguration(null, out IQueueConfiguration queueConfiguration);
         InstanceState(instance => instance.CurrentState);

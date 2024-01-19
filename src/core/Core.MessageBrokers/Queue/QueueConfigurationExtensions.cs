@@ -10,6 +10,7 @@ public static class QueueConfigurationExtensions
             Names = new Dictionary<QueueName, string>()
         };
 
+        queueConfiguration.Names.Add(QueueName.Saga, "Parameter." + QueueName.Saga.ToString());
         queueConfiguration.Names.Add(QueueName.Start, "Parameter." + QueueName.Start.ToString());
         queueConfiguration.Names.Add(QueueName.AddParameter, "Parameter." + QueueName.AddParameter.ToString()); 
         queueConfiguration.Names.Add(QueueName.Completed, "Parameter." + QueueName.Completed.ToString()); 

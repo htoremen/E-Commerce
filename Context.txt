@@ -1,0 +1,1 @@
+Scaffold-DbContext "Data Source=DESKTOP-2LN0LUU;Initial Catalog=EStateMachineDB;Integrated Security=True;TrustServerCertificate=True" Microsoft.EntityFrameworkCore.SqlServer -Context  "StateDbContext"
