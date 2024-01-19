@@ -22,6 +22,7 @@
     <Folder Include="Consumers\" />
     <Folder Include="Parameters\MessageBrokers\" />
     <Folder Include="Parameters\EventHandlers\" />
+    <Folder Include="TodoItems\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
