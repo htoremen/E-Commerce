@@ -1,4 +1,5 @@
-﻿using Core.Events.Parameters;
+﻿using Core.Events.TodoItems;
+using Core.Events.TodoLists;
 using Core.MessageBrokers;
 using Core.MessageBrokers.Enums;
 using Core.MessageBrokers.MessageBrokers;
@@ -82,9 +83,10 @@ public static class DependencyInjection
                 {
                     var partition = e.CreatePartitioner(ConcurrencyLimit);
 
-                    s.Message<IStart>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
-                    s.Message<IAddParameter>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
-                    s.Message<ICompleted>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
+                    s.Message<ICreateTodo>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
+                    s.Message<IAddTodoItem>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
+                    s.Message<IDeleteTodo>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
+                    s.Message<ICompleteTodo>(x => x.UsePartitioner(partition, m => m.Message.SessionId));
                 });
             });
         }));

@@ -10,7 +10,7 @@ public class RabbitMQSender<T> : IMessageSender<T>
     public RabbitMQSender(ISendEndpointProvider sendEndpointProvider, IQueueConfiguration queueConfiguration, IPublishEndpoint publishEndpoint)
     {
         _queueConfiguration = queueConfiguration;
-        _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:{_queueConfiguration.Names[QueueName.Start]}")).Result;
+        _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:{_queueConfiguration.Names[QueueName.CreateTodo]}")).Result;
         _publishEndpoint = publishEndpoint;
     }
 

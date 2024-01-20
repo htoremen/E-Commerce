@@ -3,7 +3,8 @@
 public enum QueueName
 {
     Saga = 0,
-    Start = 1,
-    AddParameter = 2,
-    Completed = 3,
+    CreateTodo = 1,
+    AddTodoItem = 2,
+    DeleteTodo = 3,
+    CompleteTodo = 4,
 }

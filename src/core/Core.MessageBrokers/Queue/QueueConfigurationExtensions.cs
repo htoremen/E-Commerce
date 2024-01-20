@@ -10,10 +10,11 @@ public static class QueueConfigurationExtensions
             Names = new Dictionary<QueueName, string>()
         };
 
-        queueConfiguration.Names.Add(QueueName.Saga, "Parameter." + QueueName.Saga.ToString());
-        queueConfiguration.Names.Add(QueueName.Start, "Parameter." + QueueName.Start.ToString());
-        queueConfiguration.Names.Add(QueueName.AddParameter, "Parameter." + QueueName.AddParameter.ToString()); 
-        queueConfiguration.Names.Add(QueueName.Completed, "Parameter." + QueueName.Completed.ToString()); 
+        queueConfiguration.Names.Add(QueueName.Saga, "Todo." + QueueName.Saga.ToString());
+        queueConfiguration.Names.Add(QueueName.CreateTodo, "Todo." + QueueName.CreateTodo.ToString());
+        queueConfiguration.Names.Add(QueueName.AddTodoItem, "Todo." + QueueName.AddTodoItem.ToString()); 
+        queueConfiguration.Names.Add(QueueName.DeleteTodo, "Todo." + QueueName.DeleteTodo.ToString());
+        queueConfiguration.Names.Add(QueueName.CompleteTodo, "Todo." + QueueName.CompleteTodo.ToString());
 
         if (services != null)
             services.AddSingleton<IQueueConfiguration>(queueConfiguration);

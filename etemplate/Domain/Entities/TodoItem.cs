@@ -7,6 +7,7 @@ public class TodoItem : BaseEntity
     public string? Title { get; set; }
 
     public string? Note { get; set; }
+    public string UserId { get; set; }
 
     public PriorityLevel Priority { get; set; }
 
