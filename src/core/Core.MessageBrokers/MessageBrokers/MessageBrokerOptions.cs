@@ -1,5 +1,4 @@
-﻿using Core.Infrastructure.MessageBrokers.RabbitMQ;
-using Core.MessageBrokers.RabbitMQ;
+﻿using Core.MessageBrokers.RabbitMQ;
 
 namespace Core.MessageBrokers;
 

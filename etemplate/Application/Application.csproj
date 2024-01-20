@@ -20,12 +20,14 @@
     <Folder Include="Common\Abstractions\Email\" />
     <Folder Include="Common\Abstractions\Messaging\" />
     <Folder Include="Common\Contracts\" />
-    <Folder Include="Consumers\" />
     <Folder Include="Parameters\MessageBrokers\" />
     <Folder Include="Parameters\EventHandlers\" />
+    <Folder Include="TodoLists\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\core\Core.Events\Core.Events.csproj" />
+    <ProjectReference Include="..\..\src\core\Core.MessageBrokers\Core.MessageBrokers.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>
 

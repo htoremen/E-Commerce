@@ -4,6 +4,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Application.Common.Models;
 using Microsoft.OpenApi.Models;
+using Core.MessageBrokers;
+using MassTransit;
+using Core.MessageBrokers.Enums;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Application.Consumers;
+using MediatR;
 
 namespace WebApi;
 
@@ -26,6 +32,66 @@ public static class DependencyInjection
         return services;
     }
 
+    public static IServiceCollection AddEventBus(this IServiceCollection services, AppSettings appSettings)
+    {
+        services.AddQueueConfiguration(out IQueueConfiguration queueConfiguration);
+        var messageBroker = appSettings.MessageBroker;
+
+        services.AddMassTransit(x => { UsingRabbitMq(x, messageBroker, queueConfiguration); });
+        services.ConfigureMassTransitHostOptions(messageBroker);
+
+        return services;
+    }
+    private static void UsingRabbitMq(IBusRegistrationConfigurator x, MessageBrokerOptions messageBroker, IQueueConfiguration queueConfiguration)
+    {
+        x.SetKebabCaseEndpointNameFormatter();
+        x.SetSnakeCaseEndpointNameFormatter();
+
+        x.AddConsumer<CreateTodoConsumer, CreateTodoConsumerDefinition>();
+
+        var config = messageBroker.RabbitMQ;
+        x.UsingRabbitMq((context, cfg) =>
+        {
+            var mediator = context.GetRequiredService<IMediator>();
+            cfg.Host(config.HostName, config.VirtualHost, h =>
+            {
+                h.Username(config.UserName);
+                h.Password(config.Password);
+            });
+            cfg.UseJsonSerializer();
+
+            cfg.ReceiveEndpoint(queueConfiguration.Names[QueueName.CreateTodo], e => { e.ConfigureConsumer<CreateTodoConsumer>(context); });
+
+            cfg.ConfigureEndpoints(context);
+        });
+    }
+
+    public static IServiceCollection ConfigureMassTransitHostOptions(this IServiceCollection services, MessageBrokerOptions messageBroker)
+    {
+        services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
+        services.Configure<MassTransitHostOptions>(options =>
+        {
+            options.WaitUntilStarted = true;
+            options.StartTimeout = TimeSpan.FromMinutes(5);
+            options.StopTimeout = TimeSpan.FromMinutes(1);
+        });
+
+        var bus = Bus.Factory.CreateUsingRabbitMq(cfg =>
+        {
+            cfg.Host(messageBroker.RabbitMQ.HostName, messageBroker.RabbitMQ.VirtualHost, h =>
+            {
+                h.Username(messageBroker.RabbitMQ.UserName);
+                h.Password(messageBroker.RabbitMQ.Password);
+            });
+        });
+
+        services.AddSingleton<IPublishEndpoint>(bus);
+        services.AddSingleton<ISendEndpointProvider>(bus);
+        services.AddSingleton<IBus>(bus);
+        services.AddSingleton<IBusControl>(bus);
+
+        return services;
+    }
     private static void AddInStaticValues(AppSettings appSettings)
     {
         StaticValues.Secret = appSettings.Authenticate.Secret;

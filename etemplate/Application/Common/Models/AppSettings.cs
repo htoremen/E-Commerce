@@ -1,9 +1,12 @@
-﻿namespace Application.Common.Models;
+﻿using Core.MessageBrokers;
+
+namespace Application.Common.Models;
 
 public class AppSettings
 {
     public ConnectionStrings ConnectionStrings { get; set; }
     public Authenticate Authenticate { get; set; }
+    public MessageBrokerOptions MessageBroker { get; set; }
 }
 
 public class Authenticate

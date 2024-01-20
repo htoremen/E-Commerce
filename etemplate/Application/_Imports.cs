@@ -17,3 +17,9 @@ global using AutoMapper;
 global using Application.Common.Models;
 global using AutoMapper.QueryableExtensions;
 global using Microsoft.EntityFrameworkCore;
+
+global using Application.Telemetry;
+global using Application.TodoLists.Commands.CreateTodoList;
+global using Core.Events.TodoLists;
+global using Core.MessageBrokers.RabbitMQ;
+global using MassTransit;

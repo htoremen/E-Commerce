@@ -1,6 +1,6 @@
 ﻿using Core.MessageBrokers.MessageBrokers;
 
-namespace Core.Infrastructure.MessageBrokers.RabbitMQ;
+namespace Core.MessageBrokers.RabbitMQ;
 
 public static class SetConfigureConsumer
 {
