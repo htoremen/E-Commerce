@@ -1,4 +1,6 @@
-﻿namespace Application.Parameters.Command.AddParameters;
+﻿using ValidationException = Application.Common.Exceptions.ValidationException;
+
+namespace Application.Parameters.Command.AddParameters;
 
 public class AddParameterCommand : IRequest<GenericResponse<AddParameterResponse>>
 {
@@ -7,11 +9,11 @@ public class AddParameterCommand : IRequest<GenericResponse<AddParameterResponse
 
 public class AddParameterCommandHandler : IRequestHandler<AddParameterCommand, GenericResponse<AddParameterResponse>>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IApplicationDbContext _context;
 
-    public AddParameterCommandHandler(IUnitOfWork unitOfWork)
+    public AddParameterCommandHandler(IApplicationDbContext context)
     {
-        _unitOfWork = unitOfWork;
+        _context = context;
     }
 
     public async Task<GenericResponse<AddParameterResponse>> Handle(AddParameterCommand request, CancellationToken cancellationToken)
@@ -24,8 +26,8 @@ public class AddParameterCommandHandler : IRequestHandler<AddParameterCommand, G
         }
 
         var parameter = new Parameter { Name = request.Data.Name, ParameterTypeId = request.Data.ParameterTypeId, IsActive = request.Data.IsActive, CreatedDate=DateTime.Now };
-        _unitOfWork.Parameter.Add(parameter);
-        _unitOfWork.Commit();
+        _context.Parameters.Add(parameter);
+        await _context.SaveChangesAsync(cancellationToken);
 
         return GenericResponse<AddParameterResponse>.Success(new AddParameterResponse { Id = parameter.Id }, 200);
     }

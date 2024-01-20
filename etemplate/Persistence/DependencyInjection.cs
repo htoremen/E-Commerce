@@ -1,9 +1,8 @@
 ﻿using Application.Abstractions;
-using Microsoft.EntityFrameworkCore;
+using Application.Common.Abstractions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence.Persistence;
-using Persistence.Repositories;
 
 namespace Persistence;
 
@@ -13,6 +12,7 @@ public static class DependencyInjection
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnectionString")));
+        services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         return services;
     }
 }

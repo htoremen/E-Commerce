@@ -1,28 +1,28 @@
-﻿using Domain.Events;
+﻿using Application.Common.Abstractions;
+using Domain.Events;
 
 namespace Application.TodoItems;
 
-public record CreateTodoItemCommand : IRequest<int>
+public record CreateTodoItemCommand : IRequest<string>
 {
-    public int ListId { get; init; }
-
+    public int TodoListId { get; init; }
     public string? Title { get; init; }
 }
 
-public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, int>
+public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, string>
 {
-    private readonly IUnitOfWork _unitOfWork;
+    private readonly IApplicationDbContext _context;
 
-    public CreateTodoItemCommandHandler(IUnitOfWork unitOfWork)
+    public CreateTodoItemCommandHandler(IApplicationDbContext context)
     {
-        _unitOfWork = unitOfWork;
+        _context = context;
     }
 
-    public async Task<int> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(CreateTodoItemCommand request, CancellationToken cancellationToken)
     {
         var entity = new TodoItem
         {
-            TodoListId = request.ListId,
+            TodoListId = request.TodoListId,
             Title = request.Title,
             Done = false
         };
