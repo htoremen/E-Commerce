@@ -1,0 +1,11 @@
+﻿global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
+global using FluentValidation;
+global using MassTransit;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using Order.Application.Common.Abstractions.User;
+global using Order.Application.Common.Exceptions;
+global using Order.Application.Common.Models;
+global using Order.Application.Common.Security;
+global using System.Reflection;

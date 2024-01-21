@@ -2,7 +2,7 @@
 
 public class TodoItem : BaseEntity
 {
-    public int TodoListId { get; set; }
+    public string TodoListId { get; set; }
 
     public string? Title { get; set; }
 
