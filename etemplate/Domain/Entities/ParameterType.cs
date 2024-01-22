@@ -1,12 +1,10 @@
-﻿using Domain.Common;
-
-namespace Domain.Entities;
+﻿namespace Domain.Entities;
 
 public class ParameterType : BaseEntity
 {
     public ParameterType() 
     { 
-        Parameters = new HashSet<Parameter>();
+        Parameters = new List<Parameter>();
     }
     public string Name { get; set; }
 

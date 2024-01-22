@@ -3,10 +3,10 @@ syntax = "proto3";
 option csharp_namespace = "Todo.Grpc.Protos";
 
 service TodoProtoService{
- rpc GetTodoItemsWithPagination(GetTodoItemsWithPaginationRequest) returns (GetTodoItemsWithPaginationRequest);
+ rpc GetTodoItemsWithPagination(GetTodoItemsWithPaginationRequest) returns (GetTodoItemsWithPaginationResponse);
 }
 
-message GetTodoItemsWithPagination{
+message GetTodoItemsWithPaginationResponse{
 	string Id = 1;
 	string TodoListId = 2;
 	string Title = 3;
@@ -15,6 +15,6 @@ message GetTodoItemsWithPagination{
 
 message GetTodoItemsWithPaginationRequest{
 	string TodoListId=1;
-	int PageNumber = 2;
-	int PageSize=3;
+	int32 PageNumber = 2;
+	int32 PageSize=3;
 }

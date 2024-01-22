@@ -1,9 +1,11 @@
 using Application;
+using Application.Common.Abstractions;
 using Application.Common.Models;
 using HealthChecks.UI.Client;
 using Infrastructure;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Persistence;
+using Persistence.Persistence;
 using WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,6 +35,13 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var serviceProvider = scope.ServiceProvider;
+    var _context = serviceProvider.GetService<ApplicationDbContext>();
+    ApplicationDbContextSeed.Migrate(_context);
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,8 +1,4 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Order.Application.Common.Models;
-
-namespace Order.API.Controllers;
+﻿namespace Order.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
