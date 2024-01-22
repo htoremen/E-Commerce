@@ -1,6 +1,4 @@
-﻿using Domain.Entities;
-
-namespace Persistence.Persistence;
+﻿namespace Persistence.Persistence;
 
 public static class ApplicationDbContextSeed
 {

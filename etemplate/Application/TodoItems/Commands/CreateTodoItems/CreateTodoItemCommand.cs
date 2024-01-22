@@ -1,7 +1,4 @@
-﻿using Application.Common.Abstractions;
-using Domain.Events;
-
-namespace Application.TodoItems;
+﻿namespace Application.TodoItems;
 
 public record CreateTodoItemCommand : IRequest<string>
 {

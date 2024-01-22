@@ -1,8 +1,5 @@
-﻿using Application.Abstractions;
-using Application.Common.Abstractions;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Persistence.Persistence;
 
 namespace Persistence;
 

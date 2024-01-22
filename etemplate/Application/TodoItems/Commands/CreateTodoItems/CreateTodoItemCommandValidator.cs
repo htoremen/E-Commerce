@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace Application.TodoItems;
+﻿namespace Application.TodoItems;
 
 public class CreateTodoItemCommandValidator : AbstractValidator<CreateTodoItemCommand>
 {

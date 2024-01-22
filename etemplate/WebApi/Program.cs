@@ -1,12 +1,5 @@
-using Application;
-using Application.Common.Abstractions;
-using Application.Common.Models;
-using HealthChecks.UI.Client;
-using Infrastructure;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Persistence;
-using Persistence.Persistence;
-using WebApi;
+using HealthChecks.UI.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 

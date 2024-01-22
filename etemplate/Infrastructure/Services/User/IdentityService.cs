@@ -1,7 +1,4 @@
-﻿using Application.Common.Abstractions.User;
-using Application.Common.Models;
-
-namespace Infrastructure.Services.User;
+﻿namespace Infrastructure.Services.User;
 
 public class IdentityService : IIdentityService
 {

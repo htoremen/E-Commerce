@@ -1,5 +1,4 @@
-﻿using Application.Common.Abstractions.User;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace WebApi.Services;
 

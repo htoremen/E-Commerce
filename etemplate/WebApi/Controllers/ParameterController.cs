@@ -1,7 +1,4 @@
-﻿using Application.Parameters;
-using Application.Parameters.Command.AddParameters;
-using Domain;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers;
 

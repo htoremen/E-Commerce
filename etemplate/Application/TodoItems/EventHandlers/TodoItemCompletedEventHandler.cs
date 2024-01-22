@@ -1,5 +1,4 @@
-﻿using Domain.Events;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace Application.TodoItems.EventHandlers;
 

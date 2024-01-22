@@ -1,9 +1,4 @@
-﻿using Application.Abstractions;
-using Application.Abstractions.Repositories;
-using Persistence.Persistence;
-using Persistence.Persistence.Repositories;
-
-namespace Persistence.Repositories;
+﻿namespace Persistence.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
