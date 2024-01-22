@@ -5,7 +5,7 @@ namespace Application.TodoItems;
 
 public record CreateTodoItemCommand : IRequest<string>
 {
-    public int TodoListId { get; init; }
+    public string TodoListId { get; init; }
     public string? Title { get; init; }
 }
 
