@@ -36,12 +36,12 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var serviceProvider = scope.ServiceProvider;
-    var _context = serviceProvider.GetService<ApplicationDbContext>();
-    ApplicationDbContextSeed.Migrate(_context);
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var serviceProvider = scope.ServiceProvider;
+//    var _context = serviceProvider.GetService<ApplicationDbContext>();
+//    ApplicationDbContextSeed.Migrate(_context);
+//}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

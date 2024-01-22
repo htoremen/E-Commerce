@@ -3,7 +3,7 @@ syntax = "proto3";
 option csharp_namespace = "Todo.Grpc.Protos";
 
 service TodoProtoService{
- rpc GetTodoItemsWithPagination(GetTodoItemsWithPaginationRequest) returns (GetTodoItemsWithPaginationResponse);
+ //rpc GetTodoItemsWithPagination(GetTodoItemsWithPaginationRequest) returns (GetTodoItemsWithPaginationResponse);
 }
 
 message GetTodoItemsWithPaginationResponse{
