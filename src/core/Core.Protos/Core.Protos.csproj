@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="Todo\TodoItemBriefDto.proto" GrpcServices="Both" />
+    <Folder Include="Todo\" />
   </ItemGroup>
 
 </Project>
