@@ -1,0 +1,14 @@
+﻿global using Customer.Application;
+global using Customer.Application.Common.Abstractions.User;
+global using Customer.Application.Common.Exceptions;
+global using Customer.Application.Common.Models;
+global using Customer.Application.Parameters;
+global using Customer.Application.Parameters.Command.AddParameters;
+global using Ardalis.GuardClauses;
+global using Customer.API;
+global using Customer.API.Services;
+global using Customer.Domain;
+global using Customer.Infrastructure;
+global using Customer.Persistence;
+global using Core.MessageBrokers;
+global using Core.MessageBrokers.Enums;

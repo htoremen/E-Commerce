@@ -1,0 +1,15 @@
+﻿global using AutoMapper;
+global using AutoMapper.QueryableExtensions;
+global using Customer.Application.Abstractions;
+global using Customer.Application.Common.Abstractions;
+global using Customer.Application.Common.Abstractions.User;
+global using Customer.Application.Common.Exceptions;
+global using Customer.Application.Common.Models;
+global using Customer.Application.Common.Security;
+global using Customer.Domain;
+global using Customer.Domain.Entities;
+global using FluentValidation;
+global using MassTransit;
+global using MediatR;
+global using Microsoft.EntityFrameworkCore;
+global using System.Reflection;
