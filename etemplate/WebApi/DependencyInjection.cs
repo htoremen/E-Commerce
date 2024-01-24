@@ -1,14 +1,7 @@
-﻿using WebApi.Infrastructure;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using Application.Common.Models;
+﻿using System.Text;
 using Microsoft.OpenApi.Models;
-using Core.MessageBrokers;
 using MassTransit;
-using Core.MessageBrokers.Enums;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Application.Consumers;
 using MediatR;
 
 namespace WebApi;

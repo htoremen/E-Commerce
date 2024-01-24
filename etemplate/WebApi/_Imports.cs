@@ -12,3 +12,10 @@ global using Application.Common.Models;
 global using Infrastructure;
 global using Persistence;
 global using WebApi;
+
+global using WebApi.Infrastructure;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.IdentityModel.Tokens;
+global using Application.Consumers;
+global using Core.MessageBrokers;
+global using Core.MessageBrokers.Enums;

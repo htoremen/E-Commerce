@@ -1,0 +1,12 @@
+﻿global using Identity.Application;
+global using Identity.Application.Common.Abstractions.User;
+global using Identity.Application.Common.Exceptions;
+global using Identity.Application.Common.Models;
+global using Identity.Application.Parameters;
+global using Identity.Application.Parameters.Command.AddParameters;
+global using Ardalis.GuardClauses;
+global using Identity.Domain;
+global using Identity.API;
+global using Identity.API.Services;
+global using Identity.Infrastructure;
+global using Identity.Persistence;
