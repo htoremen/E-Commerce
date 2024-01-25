@@ -76,7 +76,7 @@ namespace Customer.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
-                    Title = "API",
+                    Title = "Customer API",
                     Version = "v1"
                 });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

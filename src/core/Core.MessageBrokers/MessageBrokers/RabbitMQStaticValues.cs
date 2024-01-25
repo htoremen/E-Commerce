@@ -9,4 +9,8 @@ public static class RabbitMQStaticValues
     public static int TripThreshold { get; set; }
     public static int ActiveThreshold { get; set; }
     public static int ResetInterval { get; set; }
+    public static string Password { get; set; }
+    public static string HostName { get; set; }
+    public static string VirtualHost { get; set; }
+    public static string ConnectionString { get; set; }
 }

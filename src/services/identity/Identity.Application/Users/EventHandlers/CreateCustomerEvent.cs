@@ -1,24 +1,29 @@
-﻿using Core.Events.Customers;
-using Core.MessageBrokers;
-using Identity.Domain.Events;
-using Microsoft.Extensions.Logging;
+﻿namespace Identity.Application.Users;
+public class CreateCustomerEvent : BaseEvent
+{
+    public CreateCustomerEvent(User user)
+    {
+        User = user;
+    }
+    public User User { get; }
+}
 
-namespace Identity.Application.Users.EventHandlers;
 
 public class CreateCustomerEventHandler : INotificationHandler<CreateCustomerEvent>
 {
     private readonly ILogger<CreateCustomerEventHandler> _logger;
     private readonly IMessageSender<ICreateCustomer> _messageSender;
+    private readonly ISendEndpoint _sendEndpoint;
 
-    public CreateCustomerEventHandler(ILogger<CreateCustomerEventHandler> logger, IMessageSender<ICreateCustomer> messageSender)
+    public CreateCustomerEventHandler(ILogger<CreateCustomerEventHandler> logger, IMessageSender<ICreateCustomer> messageSender, ISendEndpointProvider sendEndpointProvider)
     {
         _logger = logger;
-        _messageSender = messageSender;
+        _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:Customer.CreateCustomer")).Result;
     }
 
     public async Task Handle(CreateCustomerEvent notification, CancellationToken cancellationToken)
     {
-        await _messageSender.SendAsync(new CreateCustomer
+        await _sendEndpoint.Send(new CreateCustomer
         {
             CorrelationId = Guid.NewGuid(),
             SessionId = Guid.NewGuid(),

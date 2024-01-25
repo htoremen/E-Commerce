@@ -16,3 +16,5 @@ global using Microsoft.EntityFrameworkCore;
 global using System.Reflection;
 global using Core.MessageBrokers;
 global using Core.Events.Customers;
+global using Identity.Domain.Common;
+global using Microsoft.Extensions.Logging;

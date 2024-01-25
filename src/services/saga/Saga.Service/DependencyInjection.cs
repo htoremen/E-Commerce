@@ -2,7 +2,6 @@
 using Core.Events.TodoLists;
 using Core.MessageBrokers;
 using Core.MessageBrokers.Enums;
-using Core.MessageBrokers.MessageBrokers;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -16,28 +15,16 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInService(this IServiceCollection services, AppSettings appSettings)
     {
-        AddStaticValues(services, appSettings);
+        services.AddStaticValues(appSettings.MessageBroker);
 
         services.AddQueueConfiguration(out IQueueConfiguration queueConfiguration);
         var messageBroker = appSettings.MessageBroker;
+        var rabbitMQ = messageBroker.RabbitMQ;
 
         services.AddMassTransit(x => { UsingRabbitMq(x, appSettings, queueConfiguration); });
         services.ConfigureMassTransitHostOptions(messageBroker);
-
         services.AddHealthChecks()
-            .AddRabbitMQ(GetRabbitMqConnection(appSettings));
-        return services;
-    }
-    private static IServiceCollection AddStaticValues(this IServiceCollection services, AppSettings appSettings)
-    {
-        var rabbitMQ = appSettings.MessageBroker.RabbitMQ;
-        RabbitMQStaticValues.ResetInterval = rabbitMQ.ResetInterval;
-        RabbitMQStaticValues.RetryTimeInterval = rabbitMQ.RetryTimeInterval;
-        RabbitMQStaticValues.RetryCount = rabbitMQ.RetryCount;
-        RabbitMQStaticValues.PrefetchCount = rabbitMQ.PrefetchCount;
-        RabbitMQStaticValues.TrackingPeriod = rabbitMQ.TrackingPeriod;
-        RabbitMQStaticValues.ActiveThreshold = rabbitMQ.ActiveThreshold;
-
+            .AddRabbitMQ(MessageBrokersCollectionExtensions.GetRabbitMqConnection(rabbitMQ.Password, rabbitMQ.HostName, rabbitMQ.VirtualHost));
         return services;
     }
 
@@ -119,24 +106,5 @@ public static class DependencyInjection
         return services;
     }
 
-    private static Uri GetRabbitMqConnection(AppSettings appSettings)
-    {
-        var config = appSettings.MessageBroker.RabbitMQ;
-        //ConnectionFactory factory = new ConnectionFactory
-        //{
-        //    UserName = appSettings.MessageBroker.RabbitMQ.UserName,
-        //    Password = appSettings.MessageBroker.RabbitMQ.Password,
-        //    VirtualHost = appSettings.MessageBroker.RabbitMQ.VirtualHost,
-        //    HostName = appSettings.MessageBroker.RabbitMQ.HostName,
-        //    Port = AmqpTcpEndpoint.UseDefaultPort
-        //};
-
-        //var connection = factory.CreateConnection();
-
-        var connectionString = $"amqp://{config.Password}:{config.Password}@{config.HostName}{config.VirtualHost}";
-        Uri uri = new Uri(connectionString, UriKind.Absolute);
-
-        return uri;
-    }
 
 }

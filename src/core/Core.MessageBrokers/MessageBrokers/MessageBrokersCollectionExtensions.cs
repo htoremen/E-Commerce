@@ -1,4 +1,5 @@
-﻿using Core.MessageBrokers.RabbitMQ;
+﻿using Core.MessageBrokers.MessageBrokers;
+using Core.MessageBrokers.RabbitMQ;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Core.MessageBrokers;
@@ -25,4 +26,13 @@ public static class MessageBrokersCollectionExtensions
 
         return uri;
     }
+
+    public static Uri GetRabbitMqConnection()
+    {
+        var connectionString = $"amqp://{RabbitMQStaticValues.Password}:{RabbitMQStaticValues.Password}@{RabbitMQStaticValues.HostName}{RabbitMQStaticValues.VirtualHost}";
+        Uri uri = new Uri(connectionString, UriKind.Absolute);
+
+        return uri;
+    }
+
 }

@@ -1,6 +1,4 @@
-﻿using Identity.Domain.Events;
-
-namespace Identity.Application.Users;
+﻿namespace Identity.Application.Users;
 
 public class CreateUserCommand : IRequest<GenericResponse<CreateUserResponse>>
 {
@@ -14,10 +12,12 @@ public class CreateUserCommand : IRequest<GenericResponse<CreateUserResponse>>
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, GenericResponse<CreateUserResponse>>
 {
     private readonly IApplicationDbContext _context;
+    private readonly IMediator _mediator;
 
-    public CreateUserCommandHandler(IApplicationDbContext context)
+    public CreateUserCommandHandler(IApplicationDbContext context, IMediator mediator)
     {
         _context = context;
+        _mediator = mediator;
     }
 
     public async Task<GenericResponse<CreateUserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
@@ -31,32 +31,15 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Gener
                 Id = Guid.NewGuid().ToString(),
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                Username = request.Username.ToLower() + "_" + random.Next(1000, 9999),
+                Username = request.Username,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
                 LoginType = request.LoginType,
             };
             _context.Users.Add(newUser);
 
-            //if (data.UserRegisterStages != null)
-            //{
-            //    foreach (var item in data.UserRegisterStages)
-            //    {
-            //        newUser.UserRegisterStages.Add(new UserRegisterStage
-            //        {
-            //            ParameterId = item.ParameterId,
-            //            ParameterTypeId = item.ParameterTypeId,
-            //            UserId = request.UserId,
-            //            ParameterStageId = item.ParameterStageId,
-            //            Created = DateTime.Now
-            //        });
-            //    }
-            //}
-
             var response = await _context.SaveChangesAsync(cancellationToken);
-
             if (response > 0)
-                newUser.AddDomainEvent(new CreateCustomerEvent(newUser));
-
+                await _mediator.Publish(new CreateCustomerEvent(newUser));
             return GenericResponse<CreateUserResponse>.Success(new CreateUserResponse { }, 200);
         }
         else

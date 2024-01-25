@@ -51,6 +51,10 @@ public static class DependencyInjection
         RabbitMQStaticValues.PrefetchCount = rabbitMQ.PrefetchCount;
         RabbitMQStaticValues.TrackingPeriod = rabbitMQ.TrackingPeriod;
         RabbitMQStaticValues.ActiveThreshold = rabbitMQ.ActiveThreshold;
+        RabbitMQStaticValues.Password = rabbitMQ.Password;
+        RabbitMQStaticValues.HostName = rabbitMQ.HostName;
+        RabbitMQStaticValues.VirtualHost = rabbitMQ.VirtualHost;
+        RabbitMQStaticValues.ConnectionString = rabbitMQ.ConnectionString;
 
         return services;
     }

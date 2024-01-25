@@ -1,4 +1,5 @@
-﻿
+﻿using Core.MessageBrokers.MessageBrokers;
+
 namespace Core.MessageBrokers.RabbitMQ;
 
 public class RabbitMQSender<T> : IMessageSender<T>
@@ -10,7 +11,9 @@ public class RabbitMQSender<T> : IMessageSender<T>
     public RabbitMQSender(ISendEndpointProvider sendEndpointProvider, IQueueConfiguration queueConfiguration, IPublishEndpoint publishEndpoint)
     {
         _queueConfiguration = queueConfiguration;
-        _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:{_queueConfiguration.Names[QueueName.CreateTodo]}")).Result;
+        var sendToUri = MessageBrokersCollectionExtensions.GetRabbitMqConnection();
+        _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:{_queueConfiguration.Names[QueueName.Saga]}")).Result;
+       // _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new Uri(RabbitMQStaticValues.ConnectionString)).Result;
         _publishEndpoint = publishEndpoint;
     }
 
