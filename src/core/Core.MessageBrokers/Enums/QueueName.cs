@@ -7,4 +7,6 @@ public enum QueueName
     AddTodoItem = 2,
     DeleteTodo = 3,
     CompleteTodo = 4,
+
+    CreateCustomer = 100
 }

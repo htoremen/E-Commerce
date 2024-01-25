@@ -1,4 +1,6 @@
-﻿namespace Identity.Application.Users;
+﻿using Identity.Domain.Events;
+
+namespace Identity.Application.Users;
 
 public class CreateUserCommand : IRequest<GenericResponse<CreateUserResponse>>
 {
@@ -7,7 +9,6 @@ public class CreateUserCommand : IRequest<GenericResponse<CreateUserResponse>>
     public string Username { get; set; }
     public string Password { get; set; }
     public LoginType LoginType { get; set; }
-    public string UserId {  get; set; }
 }
 
 public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, GenericResponse<CreateUserResponse>>
@@ -21,8 +22,8 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Gener
 
     public async Task<GenericResponse<CreateUserResponse>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var check = await _context.Users.FirstOrDefaultAsync(x => x.Username == request.Username);
-        if (check == null)
+        var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == request.Username);
+        if (user == null)
         {
             var random = new Random();
             var newUser = new User
@@ -32,7 +33,7 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Gener
                 LastName = request.LastName,
                 Username = request.Username.ToLower() + "_" + random.Next(1000, 9999),
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(request.Password),
-                LoginType = LoginType.Web,
+                LoginType = request.LoginType,
             };
             _context.Users.Add(newUser);
 
@@ -51,7 +52,11 @@ public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Gener
             //    }
             //}
 
-            await _context.SaveChangesAsync(cancellationToken);
+            var response = await _context.SaveChangesAsync(cancellationToken);
+
+            if (response > 0)
+                newUser.AddDomainEvent(new CreateCustomerEvent(newUser));
+
             return GenericResponse<CreateUserResponse>.Success(new CreateUserResponse { }, 200);
         }
         else

@@ -1,6 +1,7 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Todo.Persistence.Todo.Persistence;
+using Core.MessageBrokers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,13 @@ var appSettings = new AppSettings();
 builder.Configuration.Bind(appSettings);
 
 builder.Services
-   .AddInApplication()
+   .AddInApplication(appSettings)
    .AddInfrastructure()
    .AddInPersistence(builder.Configuration)
-   .AddInWebApi(appSettings);
+   .AddInWebApi(appSettings)
+   .AddEventBus(appSettings)
+   .AddHealthChecksServices(appSettings.MessageBroker)
+   .AddStaticValues(appSettings.MessageBroker);
 
 builder.Services.AddCors(options =>
 {
@@ -45,7 +49,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.UseCors("CorsPolicy");
@@ -54,7 +57,5 @@ app.UseHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
-
 app.MapControllers();
-
 app.Run();

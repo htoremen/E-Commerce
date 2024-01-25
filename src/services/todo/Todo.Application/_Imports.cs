@@ -20,3 +20,4 @@ global using Todo.Application.Common.Models;
 global using Todo.Application.Common.Security;
 global using Todo.Application.Telemetry;
 global using Todo.Application.TodoLists.Commands.CreateTodoList;
+global using Core.MessageBrokers;

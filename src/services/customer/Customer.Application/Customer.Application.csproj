@@ -21,7 +21,6 @@
     <Folder Include="Common\Abstractions\Email\" />
     <Folder Include="Common\Abstractions\Messaging\" />
     <Folder Include="Common\Contracts\" />
-    <Folder Include="Consumers\" />
     <Folder Include="Parameters\MessageBrokers\" />
     <Folder Include="Parameters\EventHandlers\" />
   </ItemGroup>

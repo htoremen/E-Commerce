@@ -1,6 +1,7 @@
 using HealthChecks.UI.Client;
 using Identity.Persistence.Identity.Persistence;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Core.MessageBrokers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,10 +15,12 @@ var appSettings = new AppSettings();
 builder.Configuration.Bind(appSettings);
 
 builder.Services
-   .AddInApplication()
+   .AddInApplication(appSettings)
    .AddInfrastructure()
    .AddInPersistence(builder.Configuration)
-   .AddInWebApi(appSettings);
+   .AddInWebApi(appSettings)
+   .AddEventBus(appSettings)
+   .AddStaticValues(appSettings.MessageBroker);
 
 builder.Services.AddCors(options =>
 {

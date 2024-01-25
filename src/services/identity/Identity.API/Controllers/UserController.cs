@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Identity.Application.Users;
+﻿using Identity.Application.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

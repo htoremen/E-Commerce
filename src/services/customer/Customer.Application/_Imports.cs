@@ -9,7 +9,6 @@ global using Customer.Application.Common.Security;
 global using Customer.Domain;
 global using Customer.Domain.Entities;
 global using FluentValidation;
-global using MassTransit;
 global using MediatR;
 global using Microsoft.EntityFrameworkCore;
 global using System.Reflection;

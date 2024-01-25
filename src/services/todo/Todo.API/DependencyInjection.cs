@@ -63,33 +63,7 @@ namespace Todo.API
             });
         }
 
-        public static IServiceCollection ConfigureMassTransitHostOptions(this IServiceCollection services, MessageBrokerOptions messageBroker)
-        {
-            services.TryAddSingleton(KebabCaseEndpointNameFormatter.Instance);
-            services.Configure<MassTransitHostOptions>(options =>
-            {
-                options.WaitUntilStarted = true;
-                options.StartTimeout = TimeSpan.FromMinutes(5);
-                options.StopTimeout = TimeSpan.FromMinutes(1);
-            });
-
-            var bus = Bus.Factory.CreateUsingRabbitMq(cfg =>
-            {
-                cfg.Host(messageBroker.RabbitMQ.HostName, messageBroker.RabbitMQ.VirtualHost, h =>
-                {
-                    h.Username(messageBroker.RabbitMQ.UserName);
-                    h.Password(messageBroker.RabbitMQ.Password);
-                });
-            });
-
-            services.AddSingleton<IPublishEndpoint>(bus);
-            services.AddSingleton<ISendEndpointProvider>(bus);
-            services.AddSingleton<IBus>(bus);
-            services.AddSingleton<IBusControl>(bus);
-
-            return services;
-        }
-        private static void AddInStaticValues(AppSettings appSettings)
+         private static void AddInStaticValues(AppSettings appSettings)
         {
             StaticValues.Secret = appSettings.Authenticate.Secret;
         }

@@ -40,7 +40,7 @@ public static class DependencyInjection
         x.SetKebabCaseEndpointNameFormatter();
         x.SetSnakeCaseEndpointNameFormatter();
 
-        x.AddConsumer<CreateTodoConsumer, CreateTodoConsumerDefinition>();
+       // x.AddConsumer<CreateTodoConsumer, CreateTodoConsumerDefinition>();
 
         var config = messageBroker.RabbitMQ;
         x.UsingRabbitMq((context, cfg) =>
@@ -53,7 +53,11 @@ public static class DependencyInjection
             });
             cfg.UseJsonSerializer();
 
-            cfg.ReceiveEndpoint(queueConfiguration.Names[QueueName.CreateTodo], e => { e.ConfigureConsumer<CreateTodoConsumer>(context); });
+            //cfg.ReceiveEndpoint(queueConfiguration.Names[QueueName.CreateTodo],
+            //    e =>
+            //    {
+            //        e.ConfigureConsumer<CreateTodoConsumer>(context);
+            //    });
 
             cfg.ConfigureEndpoints(context);
         });

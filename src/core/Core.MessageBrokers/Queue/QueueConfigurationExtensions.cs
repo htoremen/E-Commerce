@@ -16,6 +16,8 @@ public static class QueueConfigurationExtensions
         queueConfiguration.Names.Add(QueueName.DeleteTodo, "Todo." + QueueName.DeleteTodo.ToString());
         queueConfiguration.Names.Add(QueueName.CompleteTodo, "Todo." + QueueName.CompleteTodo.ToString());
 
+        queueConfiguration.Names.Add(QueueName.CreateCustomer, "Customer." + QueueName.CreateCustomer.ToString());
+
         if (services != null)
             services.AddSingleton<IQueueConfiguration>(queueConfiguration);
 

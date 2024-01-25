@@ -17,4 +17,12 @@ public static class MessageBrokersCollectionExtensions
         services.AddRabbitMQSender<T>();
         return services;
     }
+
+    public static Uri GetRabbitMqConnection(string password, string hostName, string virtualHost)
+    {
+        var connectionString = $"amqp://{password}:{password}@{hostName}{virtualHost}";
+        Uri uri = new Uri(connectionString, UriKind.Absolute);
+
+        return uri;
+    }
 }
