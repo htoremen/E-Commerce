@@ -1,7 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-
-namespace Core.MessageBrokers
+﻿namespace Core.MessageBrokers
 {
     public interface IMessageSender<T>
     {

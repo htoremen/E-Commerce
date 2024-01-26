@@ -12,10 +12,9 @@ public class CreateCustomerEvent : BaseEvent
 public class CreateCustomerEventHandler : INotificationHandler<CreateCustomerEvent>
 {
     private readonly ILogger<CreateCustomerEventHandler> _logger;
-    private readonly IMessageSender<ICreateCustomer> _messageSender;
     private readonly ISendEndpoint _sendEndpoint;
 
-    public CreateCustomerEventHandler(ILogger<CreateCustomerEventHandler> logger, IMessageSender<ICreateCustomer> messageSender, ISendEndpointProvider sendEndpointProvider)
+    public CreateCustomerEventHandler(ILogger<CreateCustomerEventHandler> logger, ISendEndpointProvider sendEndpointProvider)
     {
         _logger = logger;
         _sendEndpoint = sendEndpointProvider.GetSendEndpoint(new($"queue:Customer.CreateCustomer")).Result;
